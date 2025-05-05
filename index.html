@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano Benessere Pro</title>
+
+    <!-- 1. Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- 2. Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- 3. Chart.js (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Optional Adapter for time scale - not strictly needed for the bar chart -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script> -->
+
+    <!-- 4. Application Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebarNav">
+            <div class="sidebar-header">
+                 <i class="fa-solid fa-seedling logo-icon"></i>
+                 <span class="logo-text">Benessere Pro</span>
+            </div>
+            <ul class="nav-list">
+                <!-- Links will be dynamically checked for 'active' class by router -->
+                <li><a href="#dashboard" class="nav-link" data-section="dashboard"><i class="fa-solid fa-chart-line fa-fw"></i> <span class="link-text">Dashboard</span></a></li>
+                <li><a href="#tracking" class="nav-link" data-section="tracking"><i class="fa-regular fa-calendar-check fa-fw"></i> <span class="link-text">Tracking</span></a></li>
+                <li><a href="#workout" class="nav-link" data-section="workout"><i class="fa-solid fa-dumbbell fa-fw"></i> <span class="link-text">Workout</span></a></li>
+                <li><a href="#diet-editor" class="nav-link" data-section="diet-editor"><i class="fa-solid fa-pen-ruler fa-fw"></i> <span class="link-text">Editor Dieta</span></a></li>
+                <li><a href="#reference" class="nav-link" data-section="reference"><i class="fa-regular fa-rectangle-list fa-fw"></i> <span class="link-text">Riferimento</span></a></li>
+                <li><a href="#settings" class="nav-link" data-section="settings"><i class="fa-solid fa-gear fa-fw"></i> <span class="link-text">Impostazioni</span></a></li>
+            </ul>
+            <div class="sidebar-footer">
+                 <span id="appVersion">Caricamento...</span>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="content-area" id="content-area">
+            <!-- Dynamic content will be loaded here by the router -->
+            <div class="loading-indicator visible" id="loadingIndicator">
+                <i class="fa-solid fa-spinner fa-spin"></i> Caricamento applicazione...
+            </div>
+        </main>
+    </div>
+
+    <!-- Global Status Message Area -->
+    <div class="status-message-global" id="statusMessageGlobal"></div>
+
+    <!-- Application Scripts (Order matters!) -->
+    <!-- Core Config & Data -->
+    <script src="js/config.js"></script>
+    <script src="js/dataManager.js"></script>
+    <!-- UI Helpers & Routing -->
+    <script src="js/ui.js"></script>
+    <script src="js/router.js"></script>
+    <!-- Section Logic Modules (Loaded but not yet used by router) -->
+    <script src="js/sections/dashboard.js"></script>
+    <script src="js/sections/tracking.js"></script>
+    <script src="js/sections/workout.js"></script>
+    <script src="js/sections/dietEditor.js"></script>
+    <script src="js/sections/reference.js"></script>
+    <script src="js/sections/settings.js"></script>
+    <!-- Main App Initialization -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
