@@ -140,7 +140,7 @@
                      app.ui.renderElement('i', { class: 'fa-solid fa-dumbbell' }),
                      app.ui.renderElement('span', {class: 'btn-text'}, ' Workout Oggi')
                  ]),
-                 app.ui.renderElement('a', { href: '#diet-editor', class: 'button button-secondary' }, [
+                 app.ui.renderElement('a', { href: '#dietEditor', class: 'button button-secondary' }, [
                      app.ui.renderElement('i', { class: 'fa-solid fa-pen-ruler' }),
                       app.ui.renderElement('span', {class: 'btn-text'}, ' Editor Dieta')
                  ]),
