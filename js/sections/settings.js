@@ -27,6 +27,7 @@
 
         const emailInput = document.getElementById('nutritionistEmail');
         const waterGoalInput = document.getElementById('waterGoal');
+        const darkModeInput = document.getElementById('darkMode');
         let changed = false;
 
         if (emailInput && currentSettings.nutritionistEmail !== emailInput.value.trim()) {
@@ -39,6 +40,13 @@
              if (currentGoal !== newGoal) {
                  changed = true;
             }
+        }
+        if (darkModeInput) {
+            if (!!currentSettings.darkMode !== darkModeInput.checked) {
+                changed = true;
+            }
+            // Preview theme immediately
+            app.ui.applyDarkMode(darkModeInput.checked);
         }
         // Add checks for other settings fields here...
 
@@ -57,8 +65,10 @@
          // Update the currentSettings object with values from the UI *before* saving
          const emailInput = document.getElementById('nutritionistEmail');
          const waterGoalInput = document.getElementById('waterGoal');
+         const darkModeInput = document.getElementById('darkMode');
          if (emailInput) currentSettings.nutritionistEmail = emailInput.value.trim();
          if (waterGoalInput) currentSettings.waterGoalL = parseFloat(waterGoalInput.value) || app.config.DEFAULT_SETTINGS.waterGoalL;
+         if (darkModeInput) currentSettings.darkMode = darkModeInput.checked;
          // Update currentSettings with other fields here...
 
 
@@ -84,11 +94,12 @@
                      success = app.dataManager.saveSettings(currentSettings); // Save the updated object
                      if (success) {
                          app.ui.showStatusMessage("Impostazioni salvate.", 'success');
-                         hasChanges = false; // Reset flag after successful save
-                         _updateSaveButtonState(); // Update button state
-                         // Update the global config if needed (e.g., for mailto) - might require app reload for full effect
-                         app.config.NUTRITIONIST_EMAIL = currentSettings.nutritionistEmail;
-                         console.log("Settings saved and config potentially updated in memory.");
+                        hasChanges = false; // Reset flag after successful save
+                        _updateSaveButtonState(); // Update button state
+                        // Update the global config if needed (e.g., for mailto) - might require app reload for full effect
+                        app.config.NUTRITIONIST_EMAIL = currentSettings.nutritionistEmail;
+                        app.ui.applyDarkMode(currentSettings.darkMode);
+                        console.log("Settings saved and config potentially updated in memory.");
                      } else {
                          // Error message handled by dataManager for quota issues
                           app.ui.showStatusMessage("Errore nel salvataggio delle impostazioni.", 'error');
@@ -167,6 +178,9 @@
         app.ui.showLoading('Caricamento impostazioni...');
         _loadSettings(); // Load current settings into `currentSettings`
 
+        // Apply theme immediately
+        app.ui.applyDarkMode(currentSettings.darkMode);
+
         // Handle case where settings couldn't be loaded (though _loadSettings has fallback)
         if (!currentSettings) {
              app.ui.setContent('<p class="text-danger text-center mt-5">Errore critico: Impossibile caricare le impostazioni.</p>');
@@ -204,6 +218,11 @@
                         step: '0.1', min: '0',
                         value: app.ui.sanitize(String(currentSettings.waterGoalL ?? app.config.DEFAULT_SETTINGS.waterGoalL)) // Use loaded or default, ensure string
                     })
+                ]),
+                // Dark Mode Toggle
+                app.ui.renderElement('div', { class: 'mb-3 form-check form-switch' }, [
+                    app.ui.renderElement('input', { type: 'checkbox', class: 'form-check-input', id: 'darkMode', name: 'darkMode', checked: currentSettings.darkMode ?? false }),
+                    app.ui.renderElement('label', { class: 'form-check-label', for: 'darkMode' }, 'Tema scuro')
                 ]),
                 // Add more settings fields here... Example:
                 // app.ui.renderElement('div', { class: 'mb-3 form-check form-switch' }, [
