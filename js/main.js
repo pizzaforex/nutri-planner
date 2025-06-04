@@ -50,6 +50,10 @@ window.app = window.app || {};
         // --- Initialize UI Elements ---
         app.ui.setAppVersion(app.config.APP_VERSION);
 
+        // Apply theme based on saved settings
+        const initSettings = app.dataManager.loadSettings();
+        app.ui.applyDarkMode(initSettings.darkMode);
+
 
         // --- Initialize Router ---
         // The router will handle the initial route based on the URL hash

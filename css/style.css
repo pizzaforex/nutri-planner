@@ -74,6 +74,28 @@
     --transition-slow: 0.5s ease;
 }
 
+/* Dark mode overrides */
+body.dark-mode {
+    --bg-main: #181818;
+    --bg-sidebar: #222222;
+    --bg-content: #242424;
+    --bg-card: #2c2c2c;
+    --bg-alt: #2c2c2c;
+    --bg-input: #333333;
+    --bg-hover-light: #333333;
+    --bg-active-light: #444444;
+    --text-primary: #f1f1f1;
+    --text-secondary: #dddddd;
+    --text-tertiary: #aaaaaa;
+    --text-link: #90cdf4;
+    --text-link-hover: #63b3ed;
+    --border-color: #444444;
+    --border-color-light: #555555;
+    --border-input: #555555;
+    --accent-primary: #0d6efd;
+    --accent-primary-dark: #0b5ed7;
+}
+
 /* --- Reset & Base Styles --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: 100%; /* Base 16px */ }
