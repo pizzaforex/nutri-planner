@@ -229,6 +229,19 @@
              return _setItem(app.config.LOCALSTORAGE_KEYS.SETTINGS, settingsToSave);
         },
 
+        // -- Weekly Cost --
+        loadWeeklyCost: function() {
+            const cost = _getItem(app.config.LOCALSTORAGE_KEYS.WEEKLY_COST);
+            // Return empty string if nothing stored
+            return typeof cost === 'string' || typeof cost === 'number' ? cost : '';
+        },
+
+        saveWeeklyCost: function(cost) {
+            // Accept numbers or strings; store as string for consistency
+            const value = (cost !== undefined && cost !== null) ? String(cost) : '';
+            return _setItem(app.config.LOCALSTORAGE_KEYS.WEEKLY_COST, value);
+        },
+
         // -- Data Reset Utility --
         resetAllData: function() {
             let success = true;
@@ -238,6 +251,7 @@
             const keysToRemove = [
                 app.config.LOCALSTORAGE_KEYS.DIET_PLAN,
                 app.config.LOCALSTORAGE_KEYS.SETTINGS,
+                app.config.LOCALSTORAGE_KEYS.WEEKLY_COST,
             ];
 
             app.config.DAYS_OF_WEEK.forEach(day => {

@@ -34,7 +34,7 @@
             WORKOUT_DATA_PREFIX: 'wellnessPro_WorkoutData_', // Append Day Name
             DIET_PLAN: 'wellnessPro_EditableDietPlan_v1', // Versioned key
             SETTINGS: 'wellnessPro_Settings_v1',          // Versioned key
-            // Note: Removed weekly cost as separate key, can derive from tracking or keep if needed
+            WEEKLY_COST: 'wellnessPro_WeeklyCost_v1',    // Cost of groceries per week
         },
 
         // Default Editable Diet Plan (Structure from V8.1)
