@@ -442,6 +442,14 @@
             if (!(date instanceof Date)) return "";
              const options = { day: 'numeric', month: 'short' };
             return date.toLocaleDateString('it-IT', options);
+        },
+
+        /**
+         * Toggles dark mode class on the body element.
+         * @param {boolean} enabled - Whether dark mode should be enabled.
+         */
+        applyDarkMode: function(enabled) {
+            document.body.classList.toggle('dark-mode', !!enabled);
         }
 
 
